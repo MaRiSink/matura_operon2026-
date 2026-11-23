@@ -1,0 +1,47 @@
+-----Zad1
+numer_rejestracyjny	ile razy
+WA22230	                28
+WA22232			28
+
+SELECT
+    numer_rejestracyjny,
+    COUNT(id_rezerwacji) AS [ile razy]
+FROM
+    pojazdy
+    INNER JOIN rezerwacje ON pojazdy.id_pojazdu = rezerwacje.id_pojazdu
+GROUP BY
+    numer_rejestracyjny
+ORDER BY
+    COUNT(id_rezerwacji) DESC
+
+
+
+----Zad2
+numer_rejestracyjny
+WA11126
+WA11137
+
+SELECT
+    numer_rejestracyjny
+FROM
+    pojazdy
+    INNER JOIN rezerwacje ON pojazdy.id_pojazdu = rezerwacje.id_pojazdu
+WHERE
+    numer_rejestracyjny NOT IN (
+        SELECT
+        numer_rejestracyjny
+        FROM
+            pojazdy
+    INNER JOIN rezerwacje ON pojazdy.id_pojazdu = rezerwacje.id_pojazdu
+        WHERE
+            day(data_rozpoczecia) IN (2, 9, 16, 23, 30) OR   day(data_zakonczenia) IN (2, 9, 16, 23, 30)
+            GROUP BY
+    numer_rejestracyjny;
+    )
+GROUP BY
+    numer_rejestracyjny;
+
+
+
+
+----Zad3
